@@ -1,0 +1,80 @@
+class BookController < ApplicationController
+
+  def index
+    @books = Book.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @books}
+      format.json { render :json => @books}
+    end
+  end
+ 
+  
+  def about
+      redirect_to :action => 'index'
+  end  
+ 
+  
+  def contact
+      redirect_to :action => 'index'
+  end 
+  
+  
+  def delete
+      Book.find(params[:id]).destroy
+      redirect_to :action => 'index'
+  end
+
+
+   def destroy
+      Book.find(params[:id]).destroy
+      redirect_to :action => 'index'
+   end
+
+
+ 
+  def show
+      @book = Book.find_by_id(params[:id])
+      if @book.nil?
+	@books = Book.all
+	render 'index', :alert => 'Your book was not found!'
+      end
+   end
+   
+   def new
+     @book = Book.new
+     @subjects = Subject.find(:all)
+   end
+   
+   def create
+      @book = Book.new(params[:book])
+      if @book.save
+            redirect_to :action => 'index'
+      else
+            @subjects = Subject.find(:all)
+            render :action => 'new'
+      end
+   end
+
+   
+   def edit
+      @book = Book.find(params[:id])
+      @subjects = Subject.find(:all)
+   end
+   
+   def update
+      @book = Book.find(params[:id])
+      if @book.update_attributes(params[:book])
+         redirect_to :action => 'show', :id => @book
+      else
+         @subjects = Subject.find(:all)
+         render :action => 'edit'
+      end
+   end
+   
+   
+   def show_subjects
+      @subject = Subject.find(params[:id])
+   end
+end
+

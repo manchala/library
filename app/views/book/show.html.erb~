@@ -1,0 +1,12 @@
+<h1><%= @book.title %></h1>
+<%= image_tag("RoR.jpg", :class=>"imgf")%> 
+<p><%= @book.description %></p>
+<p class="clear"><strong>Authors: </strong><%= @book.authors %><br />
+<strong>Price: </strong> $<%= @book.price %><br />
+<strong>Subject :</strong> <%= @book.subject.name %><br />
+<strong>Created Date:</strong> <%= @book.created_at %><br />
+</p>
+
+<hr />
+<p class="back submit round"><%= link_to 'Back', {:action => 'index'} %>
+</p>

@@ -1,0 +1,14 @@
+<h1>Edit Book Detail</h1>
+<%= form_tag :action => 'update', :id => @book %>
+<p><label for="book_title">Title</label>:
+<%= text_field 'book', 'title' %></p>
+<p><label for="book_price">Price</label>:
+<%= text_field 'book', 'price' %></p>
+<p><label for="book_subject">Subject</label>:
+<%= collection_select(:book, :subject_id,
+                         @subjects, :id, :name) %></p>
+<p><label for="book_description">Description</label><br/>
+<%= text_area 'book', 'description' %></p>
+<%= submit_tag "Save changes" %>
+<%= %>
+<%= link_to 'Back', {:action => 'list' } %>
