@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ruby on Rail Library App </title>
+  <!-- <title>Ruby on Rail Library App </title> -->
+  <!-- The app/helpers/application_helper.rb defines the full_title helper  -->
+  <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag   'custom', :media => 'screen' %>
   <%= stylesheet_link_tag   'layout', :media => 'screen' %>
   <%= stylesheet_link_tag   'command_button', :media => 'screen' %>

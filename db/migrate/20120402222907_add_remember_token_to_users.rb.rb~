@@ -1,0 +1,4 @@
+class AddRememberTokenToUsers.rb < ActiveRecord::Migration
+  def change
+  end
+end
