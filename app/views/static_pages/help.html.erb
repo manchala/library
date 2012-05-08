@@ -1,0 +1,12 @@
+<% provide( :page_title, 'Help') %>
+<div class="center hero-unit">
+<h1><%= yield(:page_title) %></h1>
+<p>
+  This is the help page for the
+  <a href="http://www.alphacypress.com/">Alpha Cypress Computing</a>
+  Bookstore.
+</p>
+
+<%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %>
+</div>
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>

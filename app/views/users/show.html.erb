@@ -1,3 +1,5 @@
+<%provide(:page_title, "Signed up") %>  
+<div class="center hero-unit">
 <table class="profile">
 <tr>
 <td class="main">
@@ -5,13 +7,15 @@
 <%= gravatar_for @user %>
 
 
-<%= @user.name %>,  <%= @user.email %>
+<%= @user.name %>
 
 </h1>
+</div>
 </td>
 <td class="sidebar round"> 
 <strong>Name</strong> <%= @user.name %><br />
 <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
+<strong>URL</strong> <%= link_to edit_user_path(@user) %><br />
 
 </td>
 </tr>

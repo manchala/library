@@ -18,14 +18,14 @@ class User < ActiveRecord::Base
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :name, :presence => true, :length => { :minimum => 6, :maximum => 50}
-  
-  validates :email, :presence =>true, 
-		    :uniqueness => { :case_sensitive => false}, 
-		    :format => { :with => email_regex }
+  validates :email, :presence =>true,
+		    :uniqueness => { :case_sensitive => false }, 
+ 		    :format => { :with => email_regex }
   validates :password, :presence => true, :length => { :minimum => 6}
-  
+  validates :password_confirmation, :presence => true
+ 
+
   private
-  
   
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64

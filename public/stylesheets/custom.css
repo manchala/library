@@ -22,16 +22,12 @@ section {
 table.profile {
   width: 100%;
   margin-bottom: 0;
-
-
-  img.gravatar {
-    border: 1px solid red;
-    margin-bottom: -45px;
-
-  }
-
 }
 
+img.gravatar {
+    border: 1px solid red;
+    margin-bottom: -45px;
+  }
 
 
 td.main {

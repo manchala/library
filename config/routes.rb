@@ -1,4 +1,13 @@
 Library::Application.routes.draw do 
+  get "static_pages/home"
+  # get "static_pages/help"
+  # get "static_pages/about"
+  # get "static_pages/contact"
+  
+  match '/help',    to: 'static_pages#help'
+  match '/about',   to: 'static_pages#about'
+  match '/contact', to: 'static_pages#contact'
+
   match '/' => 'book#index'
   resources :articles
 
@@ -8,7 +17,8 @@ Library::Application.routes.draw do
    match '/signin', to: 'sessions#new'
    match '/signout', to: 'sessions#destroy', via: :delete
    match '/users/:id', to: 'users#show'
-   match '/users/:id', :to => "users#update", :as =>:index
+   match '/users/:id', :to => "users#update"
+   match '/users/:id/edit', to: 'users#edit'
   
 
   #get "users/new"

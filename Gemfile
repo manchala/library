@@ -51,4 +51,5 @@ group :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
   # gem 'webrat', '0.7.3'
+  gem 'factory_girl_rails', '1.4.0'
 end

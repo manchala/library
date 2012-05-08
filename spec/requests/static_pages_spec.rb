@@ -1,0 +1,73 @@
+require 'spec_helper'
+
+describe "StaticPages" do
+  
+  let(:base_title) {"Alpha Cypress Computing Bookstore App"}
+ 
+  describe "Home page" do
+    it "should have h1 'Home'" do
+      visit  '/static_pages/home'
+      page.should have_selector('h1', :text => 'Home')
+    end
+    it "should have the  base title" do
+      visit  '/static_pages/home'
+      page.should have_selector('title', :text => "#{base_title}")
+    end
+     it "should not have a custom page title" do
+      visit '/static_pages/home'
+      page.should_not have_selector('page_title', :text => '| Home')
+    end
+  end
+  
+  describe "Help page" do
+    it "should have h1 'Help'" do
+      visit help_path #help_path is '/static_pages/help'
+      page.should have_selector('h1', :text => 'Help')
+    end
+    it "should have the base title" do
+      visit help_path
+      page.should have_selector('title', :text => "Alpha Cypress Computing Bookstore App")
+    end
+    it "should not have a custom page title" do
+      visit help_path
+      page.should_not have_selector('page_title', :text => '| Help')
+    end
+   
+  end
+  
+  
+ 
+  describe "About page" do
+    it "should have h1 'Bookstore App'" do
+      visit about_path #about_path is '/static_pages/about'
+      page.should have_selector('h1', :text => 'About Us')
+    end
+    it "should have the base title" do
+      visit about_path
+      page.should have_selector('title', :text => "Alpha Cypress Computing Bookstore App")
+    end
+  end    
+
+
+
+
+  describe "Contact page" do
+    it "should have h1 'Help'" do
+      visit contact_path #contact_path is '/static_pages/contact'
+      page.should have_selector('h1', :text => 'Contact')
+    end
+    it "should have the base title" do
+      visit contact_path
+      page.should have_selector('title', :text => "#{base_title}")
+    end
+    it "should not have a custom page title" do
+      visit contact_path
+      page.should_not have_selector('page_title', :text => '| Contact')
+    end
+  end
+end
+
+
+ # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
+      #get static_pages_index_path
+      #response.status.should be(200)
