@@ -5,6 +5,8 @@ gem 'bootstrap-sass', '2.0.0'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '3.0.1'
 gem 'therubyracer'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate', '0.0.5'
 
 #gem 'mysql2', '< 0.3.7'
 gem 'mysql2' 

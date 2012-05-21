@@ -27,7 +27,7 @@ describe "Authentication" do
         before { click_link "Home" }
         it { should_not have_selector('div.alert.alert-error') }
       end
-    end
+    end # for invalid information
     
     
     describe "with valid information" do
@@ -53,8 +53,32 @@ describe "Authentication" do
         before { click_link "Sign out" }
         it { should have_link('Sign in') }
       end
-    end
+    end # for valid information
+
   end # signin page
+  
+  describe "authorization" do
+    
+    describe "for non-signed-in users" do
+      
+      #let(:user) {FactoryGirl.create(:user)}
+      let(:user) { User.find(12) }
+       
+      describe "in the Users controller" do
+	
+	describe "visiting the edit page" do
+	  before { visit edit_user_path(user) }
+	  it { should have_selector('title', text: 'Sign in')}
+	end
+	
+	describe "submitting to the update action" do
+	  before { put user_path(user) }
+	  specify { response.should redirect_to(signin_path) }
+	end
+      end
+    end # for non-signed-in users
+  
+  end #authorization
 end #Authentication
 
 

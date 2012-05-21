@@ -30,4 +30,6 @@ class User < ActiveRecord::Base
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
   end  
+  
+  self.per_page = 7
 end

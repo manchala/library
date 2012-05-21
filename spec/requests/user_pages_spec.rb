@@ -38,11 +38,17 @@ describe "User pages" do
   end
   
     describe "edit" do
-      let(:user) { User.find(12) }
+#      let(:user) {FactoryGirl.create(:user) }
+      let(:user) { User.find(35) }
+      let(:user_password) {"timothy123"}
 
-      before do
-#	sign_in user
-	visit edit_user_path(:user)
+      before { visit edit_user_path(user) }
+    before do
+#	visit signin_path
+#	  fill_in :email,            with: user.email
+#	  fill_in :password,         with: user_password
+#	click_button :submit
+#	visit edit_user_path(user)
       end
 
       describe "page" do
@@ -53,14 +59,14 @@ describe "User pages" do
  
  
       describe "with valid information" do
-	let(:new_name)  { "Jane D Austin" }
-	let(:new_email) { "jaustin@example.com" }
+	let(:new_name)  { "Ranjan R Thomas" }
+	let(:new_email) { "rthomas@yahoo.com" }
 	
 	before do
 	  fill_in :name,             with: new_name
-	  fill_in :email,            with: new_email
-	  fill_in :password,         with: user.password
-	  fill_in :password_confirmation, with: user.password
+	  fill_in "Email",            with: new_email
+	  fill_in "Password",         with: user_password
+	  fill_in :password_confirmation, with: user_password
 	  click_button :submit
 	end
 

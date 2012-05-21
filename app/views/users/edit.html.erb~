@@ -20,7 +20,7 @@
       <%= f.password_field :password_confirmation %>
       
       <div class="actions" >
-	<%= f.submit :submit_button =>"Save Changes", :class => "btn btn-large btn-primary" %>
+	<%= f.submit "Save Changes", :class => "btn btn-large btn-primary" %>
       </div>
      <% end %>  
  </div>
