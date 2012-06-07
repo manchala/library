@@ -1,4 +1,4 @@
-<% provide(:page_title, "Signed up") %>  
+<%provide(:page_title, "Signed up") %>  
 <div class="center hero-unit">
 <table class="profile">
 <tr>
@@ -10,6 +10,7 @@
 <%= @user.name %>
 
 </h1>
+
 </td>
 <td class="sidebar round"> 
 <strong>Name</strong> <%= @user.name %><br />
@@ -19,4 +20,14 @@
 </td>
 </tr>
 </table>
+
+  <div class="span8">
+      <% if @user.microposts.any? %>
+	<h3>Microposts (<%= @user.microposts.count %>)</h3>
+	<ol class="microposts">
+	  <%= render @microposts %>
+	</ol>
+	<%= will_paginate @microposts %>
+      <% end %>
+  </div>
 </div>

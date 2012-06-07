@@ -1,0 +1,29 @@
+<h1>Catalog</h1>
+
+<table class="catalog">
+<% for item in @items %>
+  <tr>
+    <td>
+        <div class="image">
+            <%= link_to (image_tag item.image_url), item %>
+        </div>
+    </td>
+    <td>
+        <div class="title">
+            <%= link_to item.title, item %>
+        </div>
+        <div class="description">
+            <%=h item.description %>
+        </div>
+        <div class="links">
+            <%= link_to 'Edit', edit_item_path(item) %> |
+            <%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %>
+	    <%= button_to "Add to Cart", :controller => :Cart, :action => :add, :id => item %>
+        </div>
+        <div class="price">
+            <%= number_to_currency(item.price, :unit => "&dollar;") %>
+        </div>
+    </td>
+  </tr>
+<% end %>
+</table>

@@ -1,12 +1,44 @@
+<div class ="center hero-unit">
 <h1><%= @book.title %></h1>
-<%= image_tag("RoR.jpg", :class=>"imgf")%> 
-<p><%= @book.description %></p>
-<p class="clear"><strong>Authors: </strong><%= @book.authors %><br />
-<strong>Price: </strong> $<%= @book.price %><br />
-<strong>Subject :</strong> <%= @book.subject.name %><br />
-<strong>Created Date:</strong> <%= @book.created_at %><br />
-</p>
+</div>
+<div class="row">
 
-<hr />
-<p class="back submit round"><%= link_to 'Back', {:action => 'index'} %>
-</p>
+<table class="catalog">
+  <tr>
+    <td>
+        <div class="image">
+            <%= link_to (image_tag @book.imgptr), @book %>
+        </div>
+    </td>
+    <td>
+        <div class="title">
+            <%= link_to @book.title, @book %>
+        </div>
+        <div class="authors">
+            <%= link_to @book.authors, @book %>
+        </div>
+        <div class="description">
+            <%=h @book.description %>
+        </div>
+        <div class="actions">
+            <%= link_to 'Edit', edit_book_path(@book) %> |
+            <%= link_to 'Back', :action => 'index' %> |
+            <%= link_to 'Destroy', @book, :confirm => 'Are you sure?', :method => :delete %>
+       </div>
+        <div class="price">
+            <%= number_to_currency(@book.price, :unit => "&dollar;") %>
+        </div>
+	
+      <div>
+	<%= form_for @book do |f| %>
+	  <%= f.hidden_field :id %>
+	  <%= f.submit "Add to Cart", :class => "btn btn-large btn-primary" %> 
+	<% end %>
+      </div>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+

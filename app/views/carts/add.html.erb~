@@ -1,0 +1,11 @@
+<div class ="center hero-unit">
+<h1>Cart - Add</h1>
+</div>
+<div class="row">
+
+<%@book = Book.find(params[:id]) %>
+<strong>Please confirm adding <em><%= @book.title %></em>
+to your shopping cart. </strong>
+<%= button_to "Confirm", cart_path, :id => params[:id] %>
+
+</div>

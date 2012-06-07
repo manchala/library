@@ -1,4 +1,11 @@
 Library::Application.routes.draw do 
+
+
+  resources :items
+
+  resources :cart
+  resources :book
+ 
   #get "static_pages/home"
   # get "static_pages/help"
   # get "static_pages/about"
@@ -14,24 +21,26 @@ Library::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :microposts, only: [:create, :destroy]
+   match '/microposts', to: 'microposts#create'
    match '/signup', to: 'users#new'
    match '/signin', to: 'sessions#new'
    match '/signout', to: 'sessions#destroy', via: :delete
-   match '/', to: 'users#index'
+   match '/users', to: 'users#index'
    match '/users/:id', to: 'users#show'
    match '/users/:id', :to => "users#update"
    match '/users/:id/edit', to: 'users#edit'
 
 
    #resources :book, :collection => { :list => :get }
-  resources :book do
-    member do
-      get 'book', :to => "book#show"
-      post 'book', :to => "book#update", :as => :index
-      delete 'book', :to => "book#delete", :as => :index
-      put 'book'
-    end
-  end
+#  resources :book do
+#    member do
+#      get 'book', :to => "book#show"
+#      post 'book', :to => "book#update", :as => :index
+#      delete 'book', :to => "book#delete", :as => :index
+#      put 'book'
+#    end
+#  end
   
  
   #resources :book, :member => {:list => :get, :show => :get} 

@@ -1,25 +1,49 @@
-<h1>Edit Book Detail</h1>
-<%= form_tag :action => 'update', :id => @book %>
-<p><label for="book_title">Title</label>:
-<%= text_field 'book', 'title' %></p>
-<p><label for="book_authors">Authors</label>:
-<%= text_field 'book', 'authors' %></p>
-<p><label for="book_price">Price</label>:
-<%= text_field 'book', 'price' %></p>
-<p><label for="book_subject">Subject</label>:
-<%= collection_select(:book, :subject_id,
-                         @subjects, :id, :name) %></p>
-<p><label for="book_description">Description</label><br/>
-<%= text_area 'book', 'description' %></p>
+<div class ="center hero-unit">
+  <h1>Edit Book Detail</h1>
+</div>
+<%= render :partial => 'form' %>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@book) do |f| %>
+      <%= render 'shared/error_messages', :object => f.object %>
 
-<hr />
-<table width="50%">
-<tr>
-<td class="back submit round"> <%= button_to 'Back', {:action => 'index'} %></td>
-<td class="back submit round"> <%= button_to 'Save', {:action => 'update'} %></td>
-</tr>
-</table>
-<%= %>
 
+<!--      <label for="book_title">Title</label> -->
+
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :authors %>
+      <%= f.text_field :authors %>
+
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+
+      <%= f.label :subject %>
+      <%= f.collection_select :subject_id, @subjects, :id, :name, :prompt => true %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, :size => "60x10" %>
+
+
+      <hr />
+      <table width="50%">
+	<div class="actions" >
+	  <%= f.submit "Save", :class => "btn btn-large btn-primary", :action => "update", :id => @book %>
+	  <%= f.submit "Cancel", :class => "btn btn-large btn-primary", :action => "show", :id => @book %>
+	</div>
+
+      </table>
+
+    <% end %>
+  </div>
+</div>
 
 <!--<td class="submit round"> <%= submit_tag 'Save Changes' -%></td> -->
+<!--<td class="back submit round"> <%= button_to 'Save', {:action => 'update'} %></td> -->
+<!--
+      <%= collection_select(:book, :subject_id,
+			      @subjects, :id, :name) %>
+
+
+-->

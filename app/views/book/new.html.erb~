@@ -1,3 +1,4 @@
+
 <h1>Add new book</h1>
 <%= form_tag :action => 'create' %>
 <p><label for="book_title">Title</label>:
@@ -10,4 +11,4 @@
 <%= text_area 'book', 'description' %></p>
 <%= submit_tag "Create" %>
 <%= %>
-<%= link_to 'Back', {:action => 'list'} %>
+<%= link_to 'Back', {:action => 'index'} %>
