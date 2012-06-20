@@ -1,0 +1,52 @@
+class CheckoutController < ApplicationController
+  def index
+    @order = Order.new
+    @page_title = "checkout"
+   
+  end
+
+  def place_order
+    @page_title = "Checkout"
+    @order = Order.new(params[:order])
+    @order.customer_ip = request.remote_ip
+    populate_order
+    
+    if @order.save
+      if @order.process
+      flash[:notice] = 'Your order has been submitted, and will be processed immediately.'
+      session[:order_id] = @order.id
+      @cart.cart_items.destroy_all
+      redirect_to :Action =>'thank_you'
+      else
+      flash[:notice] = "Error while placing order."
+      render :action => 'index'
+      end
+    else
+      render :action => 'index'
+    end
+  end
+
+  def thank_you
+  end
+  
+  
+  private
+  
+  def populate_order
+    for cart_item in @cart.cart_items
+      order_item = OrderItem.new(
+	:book_id => cart_item.book_id,
+	:price => cart_item.price,
+	:amount => cart_item.amount
+      )
+      @order.order_items << order_item
+     end 
+  end
+  
+  def process
+    result = true
+    self.status = 'processed'
+    save!
+    result
+  end
+end

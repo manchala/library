@@ -1,9 +1,12 @@
 <h1>Your Cart</h1>
 
 <% if @cart.empty? %>
-    <p>Your Cart is empty.</p>
+    <p>Your Cart <%= Cart.find_by_id(session[:cart_id]) %> is empty.</p>
+    <p>Your Cart <%= Book.find(1) %> is empty.</p>
+   <p>Your Cart <%= session[:cart_id] %> is empty.</p>
 <% end %>
 
+<%= @cart %>
 <% total = 0 %>
 	
 <table class="cart">

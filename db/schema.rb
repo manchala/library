@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120529184714) do
+ActiveRecord::Schema.define(:version => 20120613184044) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(:version => 20120529184714) do
     t.string   "imgptr"
   end
 
+  create_table "cart_items", :force => true do |t|
+    t.integer  "book_id"
+    t.integer  "cart_id"
+    t.float    "unit_price"
+    t.integer  "quantity"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "carts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "items", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -47,6 +61,31 @@ ActiveRecord::Schema.define(:version => 20120529184714) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "order_items", :force => true do |t|
+    t.integer  "book_id"
+    t.integer  "order_id"
+    t.float    "price"
+    t.integer  "amount"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string   "email"
+    t.string   "phone_number"
+    t.string   "ship_to_first_name"
+    t.string   "ship_to_last_name"
+    t.string   "ship_to_address"
+    t.string   "ship_to_city"
+    t.string   "ship_to_postal_code"
+    t.string   "ship_to_country"
+    t.string   "customer_ip"
+    t.string   "status"
+    t.string   "error_message"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "subjects", :force => true do |t|

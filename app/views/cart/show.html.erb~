@@ -1,0 +1,62 @@
+<h1>Your Shopping Cart</h1>
+
+<% if @cart %>
+    <p>Your Cart is not empty.<%=@cart.cart_items %></p>
+    <p>Your Book title is  <%=@cart.cart_items[0].book.title %></p>
+    <p>Your Book price is  <%=@cart.cart_items[0].book.price %></p>
+    <p># of books you purchased  <%=@cart.cart_items[0].quantity %></p>
+    <p>Total cost of books you purchased  <%=@cart.cart_items[0].quantity * @cart.cart_items[0].unit_price %></p>
+<% end %>
+
+<% total = 0 %>
+	
+<table class="cart">
+    <tr>
+        <th class="legend">Item</td>
+        <th class="legend">Price</td>
+        <th class="legend">Qty</td>
+	<th class="legend"> </td>
+        <th class="legend">Total</td>
+    </tr>
+	
+
+
+
+
+<% @cart.cart_items.each do |id| %>
+    <% item = @cart.cart_items.find_by_id(id) 
+       book = Book.find_by_id(item.book_id) %>
+    <tr>
+        <td class="title"><%= book.title %></td>
+        <td class="price"><%= number_to_currency(item.unit_price) %></td>
+        <td class="quantity"><%= item.quantity %><br /></td>
+	<td><%= link_to "-", item.book %></td>
+        <td class="price">
+        <%= number_to_currency(item.quantity * item.unit_price, :unit => "£") %>  </td>
+    </tr>
+    <% total += item.quantity * item.unit_price %>
+<% end %>
+
+
+
+
+
+
+
+
+
+    <tr>
+        <td colspan="4">
+            <div class="total">Total:</div>
+        </td>
+        <td>
+            <div class="price"><%= number_to_currency(total, :unit => "£") %></div>
+        </td>
+    </tr>
+</table>
+
+<p>
+    <%= link_to 'Proceed to Checkout', :controller => :checkout %> |
+    <%= link_to 'Continue Shopping', :controller => :book %> |
+    <%= link_to 'Edit Cart', :controller => :cart %>
+</p>

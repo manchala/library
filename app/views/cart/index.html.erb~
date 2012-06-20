@@ -1,0 +1,28 @@
+
+<h3>Your Shopping Cart</h3>
+
+<div id="header">
+  <h1> Emporium&trade;</h1>
+  <h2> Books on Rails</h2>
+</div>
+
+<div id="menu">
+  <ul>
+    <li><a href="">Authors</a>&nbsp;&nbsp;</li>
+    <li><a href="">Publishers</a>&nbsp;&nbsp;</li>
+    <li><a href="">Books</a>&nbsp;&nbsp;</li>
+  </ul>
+</div>
+
+<% if @cart %>
+<div id="shopping_cart">
+<%= render :partial => "cart/cart" %>
+</div>
+<% end %>
+
+<div id="footer">
+&copy; 2000-2010 Emporium
+</div>
+
+</body>
+</html>

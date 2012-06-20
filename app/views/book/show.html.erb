@@ -23,16 +23,20 @@
         <div class="actions">
             <%= link_to 'Edit', edit_book_path(@book) %> |
             <%= link_to 'Back', :action => 'index' %> |
-            <%= link_to 'Destroy', @book, :confirm => 'Are you sure?', :method => :delete %>
+            <%= link_to 'Destroy', @book, :confirm => 'Are you sure?', :method => :delete %> |
+	    <%= link_to 'Show Cart', cart_path, :id => @book %> |
+	    <%= link_to 'Add to Cart', :controller=>"cart", :action => "add", :id => @book %> |
+	    <%= button_to 'Add to Cart', :controller=>"cart", :action => "add", :id => @book %> |
+
        </div>
         <div class="price">
             <%= number_to_currency(@book.price, :unit => "&dollar;") %>
         </div>
 	
-      <div>
+      <div >
 	<%= form_for @book do |f| %>
 	  <%= f.hidden_field :id %>
-	  <%= f.submit "Add to Cart", :class => "btn btn-large btn-primary" %> 
+	  <%= f.submit 'Add to Cart', :controller => "cart", :action => "add", :id => @book, :class => "btn btn-large btn-primary"%> 
 	<% end %>
       </div>
     </td>

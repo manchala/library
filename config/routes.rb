@@ -1,9 +1,18 @@
 Library::Application.routes.draw do 
 
 
+  get "checkout/index"
+
+  get "checkout/place_order"
+
+  get "checkout/thank_you"
+
   resources :items
 
-  resources :carts
+  resources :cart
+    match '/cart/add/:id', :to => "cart#add"
+    post '/cart/add'
+    
   resources :book
  
   #get "static_pages/home"

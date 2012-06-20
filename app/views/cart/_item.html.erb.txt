@@ -1,0 +1,3 @@
+<%= link_to item.book.title %>
+<%= pluralize(item.amount, "pc", "pcs") %>
+$<%= sprintf("%0.2f", item.price * item.amount) %>

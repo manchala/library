@@ -1,0 +1,11 @@
+<h3>Your Shopping Cart</h3>
+
+<ul>
+  <% for item in @cart.cart_items %>
+  <li>
+    <%= render :partial => "cart/item", :object => item %>
+  </li>
+  <% end %>
+</ul>
+
+<p><strong>Total: $<%= sprintf("%0.2f", @cart.total) %> </strong></p>
