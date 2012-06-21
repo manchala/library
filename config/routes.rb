@@ -11,7 +11,7 @@ Library::Application.routes.draw do
 
   resources :cart
     match '/cart/add/:id', :to => "cart#add"
-    post '/cart/add'
+    match '/cart/remove/:id', :to => "cart#remove"
     
   resources :book
  

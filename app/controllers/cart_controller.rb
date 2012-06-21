@@ -19,6 +19,7 @@ class CartController < ApplicationController
   
   
   def remove
+    @book = Book.find(params[:id])
     if request.xhr?
       @cart_item = @cart.remove(params[:id])
       flash[:cart_notice] = "Removed <em>#{@cart_item.book.title}</em>"

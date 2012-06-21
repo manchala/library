@@ -15,7 +15,7 @@
         <th class="legend">Item</td>
         <th class="legend">Price</td>
         <th class="legend">Qty</td>
-	<th class="legend">Remove </td>
+	<th class="legend"> Change </td>
         <th class="legend">Total</td>
     </tr>
 	
@@ -29,10 +29,11 @@
     <tr>
         <td class="title"><%= book.title %></td>
         <td class="price"><%= number_to_currency(item.unit_price) %></td>
-        <td class="quantity"><%= item.quantity %><br /></td>
-	<td><%= link_to "-", item.book %></td>
+        <td class="quantity"><%= item.quantity %></td>
+	<td class="quantity"><%= button_to "+", :controller => "cart", :action => "add", :id => book %>
+	<%= button_to "-",  :controller => "cart", :action => "remove", :id => book %></td>
         <td class="price">
-        <%= number_to_currency(item.quantity * item.unit_price, :unit => "£") %>  </td>
+        <%= number_to_currency(item.quantity * item.unit_price, :unit => "£") %>  </td> 
     </tr>
     <% total += item.quantity * item.unit_price %>
 <% end %>
@@ -57,6 +58,5 @@
 
 <p>
     <%= link_to 'Proceed to Checkout', :controller => :checkout %> |
-    <%= link_to 'Continue Shopping', :controller => :book %> |
-    <%= link_to 'Edit Cart', :controller => :cart %>
+    <%= link_to 'Continue Shopping', :controller => :book %>
 </p>
